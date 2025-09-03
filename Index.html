@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aman Kumar • Portfolio</title>
+  <meta name="description" content="Aman Kumar — IT undergraduate, full‑stack developer. Java, Python, JavaScript, Node.js, MongoDB. Projects: Museum Ticket Booking, Real‑Estate Website." />
+  <meta property="og:title" content="Aman Kumar • Portfolio" />
+  <meta property="og:description" content="IT undergraduate & full‑stack developer. Projects: Museum Ticket Booking, Real‑Estate Website." />
+  <meta name="theme-color" content="#0ea5e9" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --card: #0f1720;
+      --text: #e5eef7;
+      --muted: #a8b3c7;
+      --brand: #22d3ee;
+      --brand-2: #60a5fa;
+      --ring: rgba(96,165,250,.45);
+      --chip: #111827;
+      --link: #7dd3fc;
+      --shadow: 0 10px 30px rgba(2,8,23,.35);
+    }
+    [data-theme="light"]{
+      --bg: #f7fafc;
+      --card: #ffffff;
+      --text: #0b1220;
+      --muted: #4b5563;
+      --brand: #0891b2;
+      --brand-2: #2563eb;
+      --ring: rgba(37,99,235,.25);
+      --chip: #f3f4f6;
+      --link: #0369a1;
+      --shadow: 0 10px 30px rgba(15,23,42,.12);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; color:var(--text); background:radial-gradient(1200px 600px at 80% -10%, rgba(34,211,238,.05), transparent 55%), radial-gradient(1000px 600px at 20% 110%, rgba(37,99,235,.08), transparent 55%), var(--bg);
+    }
+    a{color:var(--link); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:1100px; margin:0 auto; padding:0 1.2rem}
+    header{position:sticky; top:0; z-index:20; backdrop-filter:saturate(150%) blur(10px); background:linear-gradient(to bottom, rgba(7,13,22,.75), rgba(7,13,22,.35)); border-bottom:1px solid rgba(148,163,184,.12)}
+    header[data-theme="light"]{background:rgba(255,255,255,.8)}
+    nav{display:flex; align-items:center; gap:.75rem; justify-content:space-between; height:64px}
+    .brand{display:flex; align-items:center; gap:.8rem; font-weight:800; letter-spacing:.2px}
+    .logo{width:36px; height:36px; border-radius:10px; background:conic-gradient(from 180deg, var(--brand), var(--brand-2)); box-shadow:var(--shadow)}
+    .navlinks a{padding:.4rem .7rem; border-radius:.6rem; font-weight:600; color:var(--muted)}
+    .navlinks a.active, .navlinks a:hover{color:var(--text); background:rgba(148,163,184,.12)}
+    .btn{display:inline-flex; align-items:center; gap:.6rem; padding:.7rem 1rem; border-radius:.9rem; border:1px solid rgba(148,163,184,.2); background:linear-gradient(to bottom right, rgba(34,211,238,.15), rgba(37,99,235,.12)); color:var(--text); font-weight:700; box-shadow:var(--shadow)}
+    .btn:hover{transform:translateY(-1px)}
+    .ghost{background:transparent}
+    .theme{border-radius:10px; padding:.55rem .7rem; border:1px solid rgba(148,163,184,.25); background:var(--card); color:var(--text)}
+
+    /* Hero */
+    .hero{padding:72px 0 40px}
+    .hero h1{font-size:clamp(2.1rem, 3.7vw, 3.2rem); line-height:1.07; margin:.3rem 0 .8rem}
+    .eyebrow{display:inline-flex; align-items:center; gap:.5rem; padding:.25rem .55rem; border-radius:999px; background:rgba(2,8,23,.35); border:1px solid rgba(148,163,184,.18); font-size:.85rem; color:var(--muted)}
+    .hero p{max-width:720px; font-size:1.05rem; color:var(--muted)}
+    .hero-cta{display:flex; gap:.8rem; flex-wrap:wrap; margin-top:1.2rem}
+
+    /* Sections */
+    section{padding:56px 0}
+    .section-title{font-size:1.6rem; margin:0 0 1rem; letter-spacing:.3px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0)); border:1px solid rgba(148,163,184,.16); border-radius:18px; padding:1.1rem; box-shadow:var(--shadow)}
+    .grid{display:grid; gap:1rem}
+    @media(min-width:800px){
+      .grid-2{grid-template-columns:1.1fr .9fr}
+      .grid-3{grid-template-columns:repeat(3, 1fr)}
+      .grid-4{grid-template-columns:repeat(4, 1fr)}
+    }
+
+    .chips{display:flex; flex-wrap:wrap; gap:.5rem}
+    .chip{padding:.4rem .65rem; border-radius:999px; background:var(--chip); border:1px solid rgba(148,163,184,.18); color:var(--muted); font-weight:600; font-size:.9rem}
+
+    /* Timeline */
+    .timeline{position:relative; padding-left:1rem}
+    .timeline::before{content:""; position:absolute; left:.3rem; top:.35rem; bottom:.2rem; width:2px; background:linear-gradient(var(--brand-2), var(--brand))}
+    .titem{position:relative; margin:0 0 1rem 0; padding-left:1.2rem}
+    .titem::before{content:""; position:absolute; left:-.1rem; top:.35rem; width:.7rem; height:.7rem; background:linear-gradient(var(--brand), var(--brand-2)); border-radius:50%; box-shadow:0 0 0 3px rgba(96,165,250,.25)}
+    .titem h4{margin:.1rem 0 .3rem; font-size:1.05rem}
+    .titem .meta{font-size:.92rem; color:var(--muted)}
+
+    /* Project cards */
+    .project{display:flex; flex-direction:column; gap:.75rem}
+    .project img{width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:14px; border:1px solid rgba(148,163,184,.18)}
+    .project h3{margin:.2rem 0; font-size:1.1rem}
+    .project p{color:var(--muted); margin:.1rem 0 .2rem}
+    .actions{display:flex; gap:.6rem; flex-wrap:wrap}
+
+    /* Footer */
+    footer{padding:28px 0 60px; color:var(--muted)}
+  </style>
+</head>
+<body>
+  <header id="top">
+    <div class="container">
+      <nav>
+        <div class="brand">
+          <div class="logo" aria-hidden="true"></div>
+          <span>Aman Kumar</span>
+        </div>
+        <div class="navlinks">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#experience">Experience</a>
+          <a href="#projects">Projects</a>
+          <a href="#achievements">Achievements</a>
+          <a href="#certifications">Certifications</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div style="display:flex; gap:.5rem; align-items:center">
+          <button id="themeToggle" class="theme" aria-label="Toggle theme">🌙</button>
+          <a class="btn ghost" href="#resume" id="resumeLink">Download Résumé</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <span class="eyebrow">IT Undergraduate • Full‑Stack Developer</span>
+      <h1>Building reliable, user‑friendly web apps with JavaScript, Java, and SQL.</h1>
+      <p>
+        I'm Aman Kumar, a B.Tech (IT) student at Haldia Institute of Technology (2022–2026, CGPA 7.29). I enjoy
+        crafting clean UIs, secure backends, and scalable deployments. Recently, I built a Museum Ticket Booking
+        platform with authentication, AI chatbot flow, and automated email confirmations, and a responsive
+        Real‑Estate website deployed on Netlify.
+      </p>
+      <div class="hero-cta">
+        <a class="btn" href="#projects">See my projects →</a>
+        <a class="btn ghost" href="mailto:amankumar71085@gmail.com">Email me</a>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container grid grid-2">
+        <div class="card">
+          <h2 class="section-title">About</h2>
+          <p style="color:var(--muted)">Based in West Bengal, India. I focus on building end‑to‑end features: from
+            accessible, responsive frontends to dependable APIs and databases. I’m comfortable with Agile practices and
+            ship continuously with an eye on performance and DX.</p>
+          <div class="chips" style="margin-top: .8rem">
+            <span class="chip">B.Tech IT (2022–2026)</span>
+            <span class="chip">Haldia Institute of Technology</span>
+            <span class="chip">CGPA 7.29</span>
+            <span class="chip">Open to Internships</span>
+          </div>
+        </div>
+        <div class="card">
+          <h2 class="section-title">Education</h2>
+          <div class="timeline">
+            <div class="titem">
+              <h4>Haldia Institute of Technology — B.Tech in Information Technology</h4>
+              <div class="meta">Haldia, West Bengal • 2022 – 2026 • CGPA: 7.29</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <h2 class="section-title">Skills</h2>
+        <div class="card">
+          <div class="chips">
+            <span class="chip">Java</span>
+            <span class="chip">Python</span>
+            <span class="chip">JavaScript</span>
+            <span class="chip">HTML</span>
+            <span class="chip">CSS</span>
+            <span class="chip">Node.js</span>
+            <span class="chip">MongoDB</span>
+            <span class="chip">SQL / DBMS</span>
+            <span class="chip">Operating Systems</span>
+            <span class="chip">OOP</span>
+            <span class="chip">SDLC</span>
+            <span class="chip">Agile</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <h2 class="section-title">Experience</h2>
+        <div class="card">
+          <div class="timeline">
+            <div class="titem">
+              <h4>Euphoria Genx — Full‑Stack Intern</h4>
+              <div class="meta">Built a full‑stack app with JavaScript and SQL; implemented secure role‑based access for 100+ users; deployed using Docker and cloud services (≈20% scalability boost, ≈30% faster deployments); collaborated within a team of 4 to reduce backend latency.</div>
+              <div class="actions" style="margin-top:.6rem">
+                <a href="https://drive.google.com/file/d/14YMG4mQpEFYAlEDxlWvgeBlZWJN_YVdy/view?usp=sharing" class="btn ghost">Internship Certificate</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <h2 class="section-title">Projects</h2>
+        <div class="grid grid-2">
+          <article class="card project">
+            <img src="https://images.unsplash.com/photo-1545259741-2ea3ebf61fa7?q=80&w=1200&auto=format&fit=crop" alt="Museum ticket booking UI preview" />
+            <h3>Museum Ticket Booking System</h3>
+            <p>Web platform to reserve tickets online with secure auth (login/signup), AI‑guided booking flow (date, ticket count, time slot, visitor details), and automated email confirmations. Data stored with SQL ensuring consistency and security.</p>
+            <div class="chips">
+              <span class="chip">Auth</span>
+              <span class="chip">AI Chatbot flow</span>
+              <span class="chip">Email automation</span>
+              <span class="chip">SQL</span>
+            </div>
+            <div class="actions">
+              <a class="btn" href="https://github.com/amankumar71085/Meseum.git" target="_blank" rel="noopener">Code ↗</a>
+            </div>
+          </article>
+
+          <article class="card project">
+            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1200&auto=format&fit=crop" alt="Real‑estate website preview" />
+            <h3>Real‑Estate Website — "Aman Real Estate"</h3>
+            <p>Responsive site showcasing property listings with images, pricing, details, search, services, testimonials, and contact form. Deployed on Netlify to enable quick sharing and feedback.</p>
+            <div class="chips">
+              <span class="chip">Responsive UI</span>
+              <span class="chip">Listings</span>
+              <span class="chip">Search</span>
+              <span class="chip">Netlify</span>
+            </div>
+            <div class="actions">
+              <a class="btn" href="https://aman-real-estate.netlify.app/" target="_blank" rel="noopener">Live ↗</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="achievements">
+      <div class="container grid grid-2">
+        <div class="card">
+          <h2 class="section-title">Achievements</h2>
+          <ul>
+            <li>1st place — B‑Plan Competition at college fest “Prayukti” (50+ teams).</li>
+            <li>Successfully completed ACM Hackathon at college.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h2 class="section-title">Leadership & Service</h2>
+          <ul>
+            <li>Mentor & Volunteer — Team Samarpan (HIT NGO), teaching underprivileged children.</li>
+            <li>Class Representative (CR).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="certifications">
+      <div class="container">
+        <h2 class="section-title">Certifications</h2>
+        <div class="grid">
+          <div class="card">
+            <strong>Java Course — Mastering the Fundamentals (Scaler)</strong>
+            <div class="actions" style="margin-top:.4rem">
+              <a class="btn ghost" href="#" onclick="alert('Add your Scaler certificate link here')">View Certificate</a>
+            </div>
+          </div>
+          <div class="card">
+            <strong>SQL and Relational Databases (IBM)</strong>
+            <div class="actions" style="margin-top:.4rem">
+              <a class="btn ghost" href="#" onclick="alert('Add your IBM certificate link here')">View Certificate</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container grid grid-2">
+        <div class="card">
+          <h2 class="section-title">Contact</h2>
+          <p><strong>Email:</strong> <a href="mailto:amankumar71085@gmail.com">amankumar71085@gmail.com</a></p>
+          <p><strong>Phone:</strong> <a href="tel:+918789328984">+91 87893 28984</a></p>
+          <p><strong>Location:</strong> West Bengal, India</p>
+          <div class="actions" style="margin-top:.8rem">
+            <a class="btn ghost" href="https://github.com/amankumar71085" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn ghost" href="https://www.linkedin.com/in/aman-kumar-659ba224b" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </div>
+        <div class="card">
+          <h2 class="section-title">Quick Message</h2>
+          <form id="contactForm" onsubmit="return handleSubmit(event)">
+            <label>Name<br/>
+              <input required name="name" class="input" placeholder="Your name" />
+            </label>
+            <br/>
+            <label>Email<br/>
+              <input required name="email" type="email" class="input" placeholder="you@example.com" />
+            </label>
+            <br/>
+            <label>Message<br/>
+              <textarea required name="message" class="input" rows="4" placeholder="Hey Aman, ..."></textarea>
+            </label>
+            <br/>
+            <button class="btn" type="submit">Send</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="card" style="display:flex; justify-content:space-between; align-items:center; gap:.8rem; flex-wrap:wrap">
+        <div>
+          <strong>Aman Kumar</strong>
+          <div style="color:var(--muted); font-size:.95rem">© <span id="year"></span> • Built with HTML, CSS & JS</div>
+        </div>
+        <div class="chips">
+          <a class="chip" href="#top">Back to top ↑</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <style>
+    .input{width:100%; padding:.8rem 1rem; border-radius:.8rem; border:1px solid rgba(148,163,184,.2); background:var(--card); color:var(--text); outline:none}
+    .input:focus{box-shadow:0 0 0 6px var(--ring); border-color:transparent}
+  </style>
+
+  <script>
+    // Theme toggle with localStorage
+    const root = document.documentElement;
+    const themeToggle = document.getElementById('themeToggle');
+    const saved = localStorage.getItem('theme');
+    if(saved){ root.setAttribute('data-theme', saved); themeToggle.textContent = saved === 'light' ? '🌞' : '🌙'; }
+    themeToggle.addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      root.setAttribute('data-theme', next);
+      themeToggle.textContent = next === 'light' ? '🌞' : '🌙';
+      localStorage.setItem('theme', next);
+    });
+
+    // Active nav link highlight on scroll
+    const sections = document.querySelectorAll('main section[id]');
+    const navLinks = document.querySelectorAll('.navlinks a');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        const id = entry.target.getAttribute('id');
+        const link = document.querySelector(`.navlinks a[href="#${id}"]`);
+        if(entry.isIntersecting){
+          navLinks.forEach(a => a.classList.remove('active'));
+          if(link) link.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-50% 0px -45% 0px' });
+    sections.forEach(s => observer.observe(s));
+
+    // Contact form: opens default mail client with prefilled body
+    function handleSubmit(e){
+      e.preventDefault();
+      const data = new FormData(e.target);
+      const name = data.get('name');
+      const email = data.get('email');
+      const msg = data.get('message');
+      const subject = encodeURIComponent('Portfolio Contact from ' + name);
+      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${msg}`);
+      window.location.href = `mailto:amankumar71085@gmail.com?subject=${subject}&body=${body}`;
+      e.target.reset();
+      return false;
+    }
+
+    // Resume link (add your PDF file name to the project root)
+    document.getElementById('resumeLink').setAttribute('href', 'AmanExcellent.pdf');
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
